@@ -145,3 +145,5 @@ out
 
 media
 secrets.py
+
+.DS_Store
