@@ -1,24 +1,21 @@
-import os
+import logging
+
 import telebot
-from parser import return_joy
-from dotenv import load_dotenv
+
+from config import TOKEN, CHAT_IDS
+from parser import get_image
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
-load_dotenv()
-TOKEN = os.getenv('TOKEN')
-bot = telebot.TeleBot(TOKEN, parse_mode=None)
+def main():
+    bot = telebot.TeleBot(TOKEN, parse_mode=None)
+    image = get_image()
+    for chat_id in CHAT_IDS:
+        bot.send_photo(chat_id, image)
+        logger.info("Bot sends image to chat id: %s" % chat_id)
 
-# список груп 1 pyFlood, 2 maevka, 3 ahmed's group
-CHATS = os.getenv('CHATS').split(',')
 
-# получаем фотку
-try:
-    image = return_joy()
-except OSError:
-    print('сайт не робит')
-
-try:
-    for chat in CHATS:
-        bot.send_photo(chat, image)
-except NameError:
-    print('image is not defined')
+if __name__ == "__main__":
+    main()
