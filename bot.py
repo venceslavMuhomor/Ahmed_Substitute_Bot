@@ -11,8 +11,9 @@ logger = logging.getLogger(__name__)
 
 
 def main():
-    bot = telebot.TeleBot(TOKEN, parse_mode=None)
     image = get_image()
+    bot = telebot.TeleBot(TOKEN, parse_mode=None)
+    logger.info('Try send image url (%s)' % image)
     image_type = urlsplit(image).path.split('.')[-1]
 
     if image_type in ['png', 'jpeg', 'jpg']:

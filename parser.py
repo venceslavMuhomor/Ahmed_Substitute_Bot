@@ -19,10 +19,12 @@ def get_html(url):
 def get_page_data(html):
     soup = BeautifulSoup(html, 'lxml')
     image = soup.find('a', class_='prettyPhotoLink')
-    image_link = image['href']
+    image_link = image['href'].replace('//', 'https://')
     return image_link
 
 
 def get_image():
-    html = get_html('http://reactor.cc/tag/%D0%AD%D1%80%D0%BE%D1%82%D0%B8%D0%BA%D0%B0')
+    html = get_html(
+        'https://reactor.cc/tag/%D0%AD%D1%80%D0%BE%D1%82%D0%B8%D0%BA%D0%B0'
+    )
     return get_page_data(html)
