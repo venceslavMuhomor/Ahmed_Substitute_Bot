@@ -2,7 +2,7 @@ import logging
 
 import telebot
 
-from config import TOKEN, CHAT_IDS, reddit_username, reddit_password, reddit_clientid, reddit_secret, subs_list
+from config import TOKEN, CHAT_IDS, reddit_clientid, reddit_secret, subs_list
 
 from parser import RedditParser
 
@@ -13,8 +13,6 @@ logger = logging.getLogger(__name__)
 def main():
     bot = telebot.TeleBot(TOKEN, parse_mode=None)
     reddit_parser = RedditParser(
-        reddit_username=reddit_username,
-        reddit_password=reddit_password,
         reddit_clientid=reddit_clientid,
         reddit_secret=reddit_secret,
         subs_list=subs_list

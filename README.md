@@ -6,9 +6,9 @@ Telegram bot for sending naughty photos of girls daily.
 ```sh
 $ git clone https://github.com/venceslavMuhomor/Ahmed_Substitute_Bot
 $ docker build -t ahmed-bot .
-$ docker run -e TOKEN=<token> -e CHAT_IDS=<chat ids> -e reddit_username=<reddit_username>
- -e reddit_password=<reddit_password> -e reddit_clientid=<reddit_clientid> -e reddit_secret=<reddit_secret> 
- -e subs_list=<subs_list>--name bot ahmed-bot
+$ docker run -e TOKEN=<token> -e CHAT_IDS=<chat ids> 
+ -e reddit_clientid=<reddit_clientid> -e reddit_secret=<reddit_secret> 
+ -e subs_list=<subs_list> --name bot ahmed-bot
 ```
 
 ### Environment variables bot
@@ -17,8 +17,6 @@ $ docker run -e TOKEN=<token> -e CHAT_IDS=<chat ids> -e reddit_username=<reddit_
 |:------------------|:-------------------------------------|:-----------------------------------------------|
 | `TOKEN`           | Telegram bot token                   | 239842023:BBFGC10nC7C6IF3le59yl9u4fJJeV2Ts4z19 |
 | `CHAT_IDS`        | Telegram chat id list                | -209572499,-10438139                           |
-| `reddit_username` | reddit profile`s username            | test_user                                      |
-| `reddit_password` | reddit password                      | some password                                  |
 | `reddit_clientid` | clientid from reddit app             | applicationid                                  |
 | `reddit_secret`   | secret from reddit app               | some secret                                    |
 | `subs_list`       | names of reddit subreddits for parse | sub1, sub2, sub3                               |
