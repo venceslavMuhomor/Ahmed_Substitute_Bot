@@ -12,6 +12,8 @@ jobs:
     steps:
       - run: docker run -e TOKEN=${{ secrets.TOKEN}} 
             -e CHAT_IDS=${{ secrets.CHAT_IDS }} 
+            -e reddit_username=${{ secrets.REDDIT_USERNAME }}
+            -e reddit_password=${{ secrets.REDDIT_PASSWORD }}
             -e reddit_clientid=${{ secrets.REDDIT_CLIENTID }}
             -e reddit_secret=${{ secrets.REDDIT_CLIENTID }}
             -e subs_list=${{ secrets.SUBS_LIST }}

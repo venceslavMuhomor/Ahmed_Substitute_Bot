@@ -14,9 +14,13 @@ class RedditParser:
         self,
         reddit_clientid: str,
         reddit_secret: str,
+        reddit_username: str,
+        reddit_password: str,
         subs_list: List[str]
     ):
         self.reddit = praw.Reddit(
+            username=reddit_username,
+            password=reddit_password,
             client_id=reddit_clientid,
             client_secret=reddit_secret,
             user_agent="/r/pics grabber v1.0"
