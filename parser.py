@@ -1,30 +1,40 @@
 import logging
+import random
+from typing import List
 
-import requests
-from bs4 import BeautifulSoup
+import praw
+from telebot.types import InputMediaPhoto
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-def get_html(url):
-    try:
-        r = requests.get(url)
-        r.raise_for_status()
-        return r.text
-    except requests.exceptions.HTTPError as error:
-        logger.exception(error)
+class RedditParser:
+    def __init__(
+        self,
+        reddit_username: str,
+        reddit_password: str,
+        reddit_clientid: str,
+        reddit_secret: str,
+        subs_list: List[str]
+    ):
+        self.reddit = praw.Reddit(
+            username=reddit_username,
+            password=reddit_password,
+            client_id=reddit_clientid,
+            client_secret=reddit_secret,
+            user_agent="/r/pics grabber v1.0"
+        )
+        self.subs_list = subs_list
 
-
-def get_page_data(html):
-    soup = BeautifulSoup(html, 'lxml')
-    image = soup.find('a', class_='prettyPhotoLink')
-    image_link = image['href'].replace('//', 'https://')
-    return image_link
-
-
-def get_image():
-    html = get_html(
-        'https://reactor.cc/tag/%D0%AD%D1%80%D0%BE%D1%82%D0%B8%D0%BA%D0%B0'
-    )
-    return get_page_data(html)
+    def get_image_links_from_reddit(self):
+        try:
+            subreddit = self.reddit.subreddit(random.choice(self.subs_list))
+            posts = subreddit.hot()
+            images_list = []
+            for post in posts:
+                if post.url.endswith(('jpg', 'jpeg', 'png')):
+                    images_list.append(post)
+            return [InputMediaPhoto(x.url) for x in images_list[:5]]
+        except Exception as e:
+            logger.exception(e)
