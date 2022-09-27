@@ -9,11 +9,6 @@ jobs:
   build:
     name: bot
     runs-on: ubuntu-latest
-    env:
-      TOKEN: ${{ secrets.TOKEN}}
-      CHAT_IDS: ${{ secrets.CHAT_IDS }}
-      reddit_clientid: ${{ secrets.REDDIT_CLIENTID }}
-      reddit_secret: ${{ secrets.REDDIT_CLIENTID }}
-      subs_list: ${{ secrets.SUBS_LIST }}
+    environment: bot`s env
     steps:
       - run: docker run --rm ${{ secrets.DOCKER_IMAGE_NAME }}
