@@ -1,0 +1,13 @@
+name: Trigger for bot
+
+on:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  build:
+    name: bot
+    runs-on: ubuntu-latest
+    steps:
+      - run: docker run --rm ${{ secrets.DOCKER_IMAGE_NAME }}
