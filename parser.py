@@ -3,6 +3,7 @@ import random
 from typing import List
 
 import praw
+from prawcore import ResponseException
 from telebot.types import InputMediaPhoto
 
 logging.basicConfig(level=logging.INFO)
@@ -14,17 +15,17 @@ class RedditParser:
         self,
         reddit_clientid: str,
         reddit_secret: str,
-        reddit_username: str,
-        reddit_password: str,
         subs_list: List[str]
     ):
         self.reddit = praw.Reddit(
-            username=reddit_username,
-            password=reddit_password,
             client_id=reddit_clientid,
             client_secret=reddit_secret,
             user_agent="/r/pics grabber v1.0"
         )
+        try:
+            self.reddit.user.me()
+        except ResponseException as e:
+            logger.exception(e)
         self.subs_list = subs_list
 
     def get_image_links_from_reddit(self):

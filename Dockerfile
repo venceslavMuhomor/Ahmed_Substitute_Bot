@@ -1,10 +1,8 @@
-FROM python:3.8.10-alpine3.13
+FROM python:3.10-slim
 
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
 
-RUN apk add --update --no-cache gcc musl-dev libxslt-dev \
-    && rm -rf /var/cache/apk/*
 
 WORKDIR app
 
