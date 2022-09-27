@@ -1,9 +1,8 @@
 name: Trigger for bot
 
 on:
-  push:
-    branches:
-      - 'master'
+  schedule:
+    - cron: '0 4 * * *'
 
 jobs:
   build:
