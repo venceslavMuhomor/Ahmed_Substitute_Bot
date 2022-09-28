@@ -2,7 +2,8 @@ name: Trigger for bot
 
 on:
   schedule:
-    - cron: '0 4 * * *'
+    - cron: '15 8 * * *'
+
 
 jobs:
   build:
