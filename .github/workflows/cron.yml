@@ -2,27 +2,17 @@ name: Trigger for bot
 
 on:
   schedule:
-    - cron: '20 14 * * *'
+    - cron: '30 3 * * *'
 
 
 jobs:
   build:
     name: bot
     runs-on: ubuntu-latest
-#    steps:
-#      - run: docker run -e TOKEN=${{ secrets.TOKEN}}
-#            -e CHAT_IDS=${{ secrets.CHAT_IDS }}
-#            -e reddit_clientid=${{ secrets.REDDIT_CLIENTID }}
-#            -e reddit_secret=${{ secrets.REDDIT_SECRET }}
-#            -e subs_list=${{ secrets.SUBS_LIST }}
-#            --rm ${{ secrets.DOCKER_IMAGE_NAME }}
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-      - name: Install requirements
-        run: pip install -r requirements.txt
-
-      - name: run bot
-        run: python my_script.py
+      - run: docker run -e TOKEN=${{ secrets.TOKEN}}
+            -e CHAT_IDS=${{ secrets.CHAT_IDS }}
+            -e reddit_clientid=${{ secrets.REDDIT_CLIENTID }}
+            -e reddit_secret=${{ secrets.REDDIT_SECRET }}
+            -e subs_list=${{ secrets.SUBS_LIST }}
+            --rm ${{ secrets.DOCKER_IMAGE_NAME }}
