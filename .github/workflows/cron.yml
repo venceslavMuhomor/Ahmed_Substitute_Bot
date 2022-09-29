@@ -3,7 +3,7 @@ name: Trigger for bot
 
 on:
   schedule:
-    - cron: ${{secrets.CRON_RULE}}
+    - cron: '0 2 * * *'
 
 
 jobs:
