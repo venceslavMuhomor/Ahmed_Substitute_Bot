@@ -15,7 +15,7 @@ $ docker run -e TOKEN=<token> -e CHAT_IDS=<chat ids>
 
 | Key               | Description                          | Example value                                  |
 |:------------------|:-------------------------------------|:-----------------------------------------------|
-| `TOKEN`           | Telegram bot token                   | 239842023:BBFGC10nC7C6IF3le59yl9u4fJJeV2Ts4z19 |
+| `TOKEN`           | Telegram bot token                   | 239843023:ABFGC11nC7C6IF3le29yl9u4fJJeV2Ts4z19 |
 | `CHAT_IDS`        | Telegram chat id list                | -209572499,-10438139                           |
 | `reddit_clientid` | clientid from reddit app             | applicationid                                  |
 | `reddit_secret`   | secret from reddit app               | some secret                                    |
