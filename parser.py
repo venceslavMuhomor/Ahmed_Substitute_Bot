@@ -38,7 +38,7 @@ class RedditParser:
                     img_list.append(post)
 
             res = [
-                InputMediaPhoto(x.url) for x in random.choices(img_list, k=5)
+                InputMediaPhoto(x.url) for x in random.choices(img_list, k=2)
             ]
             return res
         except Exception as e:
