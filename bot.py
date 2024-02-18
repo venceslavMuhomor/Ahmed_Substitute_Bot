@@ -2,24 +2,23 @@ import logging
 
 import telebot
 
-from config import TOKEN, CHAT_IDS, reddit_clientid, reddit_secret, subs_list
-
-from parser import RedditParser
+from config import TOKEN, CHAT_IDS
+from web_parser import RandomImage
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
 def main():
-    bot = telebot.TeleBot(TOKEN, parse_mode=None)
-    reddit_parser = RedditParser(
-        reddit_clientid=reddit_clientid,
-        reddit_secret=reddit_secret,
-        subs_list=subs_list
-    )
-    images = reddit_parser.get_image_links_from_reddit()
-    for chat_id in CHAT_IDS:
-        bot.send_media_group(chat_id=chat_id, media=images)
+    bot = telebot.TeleBot(TOKEN)
+    image = RandomImage()
+    try:
+        for chat_id in CHAT_IDS:
+            bot.send_photo(chat_id=chat_id, photo=image)
+    except Exception as e:
+        logger.error(e)
+        # if CHAT_IDS is 1 chat_id
+        bot.send_photo(chat_id=CHAT_IDS[0], photo=image)
 
 
 if __name__ == "__main__":
