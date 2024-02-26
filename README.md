@@ -20,3 +20,5 @@ $ docker run -e TOKEN=<token> -e CHAT_IDS=<chat ids>
 | `reddit_clientid` | clientid from reddit app             | applicationid                                  |
 | `reddit_secret`   | secret from reddit app               | some secret                                    |
 | `subs_list`       | names of reddit subreddits for parse | sub1, sub2, sub3                               |
+
+
